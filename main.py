@@ -110,7 +110,6 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
-        print(current_user.is_authenticated)
         return redirect(url_for("get_all_posts"))
     return render_template("register.html", form=form, logged_in=current_user.is_authenticated)
 
@@ -121,7 +120,6 @@ def login():
     form = LoginForm()
     if request.method == "POST":
         result = db.session.execute(db.select(User).where(User.email == form.email.data)).scalar()
-        print(result, form.email.data)
         check = check_password_hash(result.password, form.password.data)
         if check:
             login_user(result)
@@ -135,9 +133,6 @@ def login():
 
 @app.route('/logout')
 def logout():
-    # user = db.session.execute(db.select(User).where(User.email == current_user.email)).scalar()
-    # db.session.delete(user)
-    # db.session.commit()
     logout_user()
     return redirect(url_for('get_all_posts'))
 
@@ -164,7 +159,6 @@ def show_post(post_id):
             new_comment = Comment(text=comment, comment_author=current_user, parent_post=requested_post)
             db.session.add(new_comment)
             db.session.commit()
-    # all_comments = db.session.execute(db.select(Comment)).scalars().all()
     return render_template("post.html", post=requested_post, form=form, logged_in=current_user.is_authenticated)
 
 
