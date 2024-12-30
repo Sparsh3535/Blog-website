@@ -31,7 +31,6 @@ gravatar = Gravatar(app,
                     base_url=None)
 
 
-# CREATE DATABASE
 class Base(DeclarativeBase):
     pass
 
