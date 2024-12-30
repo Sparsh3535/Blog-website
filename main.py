@@ -15,7 +15,7 @@ import os
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ['Flask secret key']
+app.config['SECRET_KEY'] = os.environ['Flask_secret_key']
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 login_manager = LoginManager()
