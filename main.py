@@ -21,7 +21,6 @@ Bootstrap5(app)
 login_manager = LoginManager()
 
 
-# TODO: Configure Flask-Login
 gravatar = Gravatar(app,
                     size=100,
                     rating='g',
